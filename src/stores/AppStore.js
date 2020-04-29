@@ -9,7 +9,7 @@ class AppStore {
 
     @observable shopName = getLocalItem('shopName') || 'ZLY';
 
-    @observable sider = Number(getLocalItem('Sider')) || 1;
+    @observable sider = Number(getLocalItem('Sider')) || 0;
 
     @action.bound
     changeToken(token) {

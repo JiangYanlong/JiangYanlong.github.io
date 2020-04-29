@@ -1,4 +1,4 @@
-const { override, fixBabelImports, addLessLoader, addWebpackPlugin, addWebpackAlias, addDecoratorsLegacy, addBabelPlugins, useEslintRc, addPostcssPlugins } = require('customize-cra');
+const { override, fixBabelImports, addLessLoader, addWebpackPlugin, addWebpackAlias, addDecoratorsLegacy, addBabelPlugins, addPostcssPlugins } = require('customize-cra');
 const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin');
 const path = require('path');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
@@ -41,7 +41,6 @@ module.exports = override(
         })
     ]),
     removeManifest(),
-    useEslintRc(path.resolve(__dirname, ".eslintrc.js")),
     addDecoratorsLegacy(), // 装饰器
     addWebpackAlias({
         ["@"]: path.resolve(__dirname, "src")

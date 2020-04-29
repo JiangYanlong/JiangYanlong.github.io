@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Avatar } from 'antd';
 import { Layout, Menu, Spin, Dropdown, Button, Modal } from 'antd';
 import { SettingOutlined, LogoutOutlined, MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
@@ -7,7 +8,7 @@ import { observer, inject } from 'mobx-react';
 import { renderRoutes, routeConfig } from '../router/router';
 import Login from '../pages/Login';
 
-const { Header, Sider, Content, Footer } = Layout;
+const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
 
 @inject('appStore')
@@ -151,6 +152,8 @@ class BasicLayout extends Component {
                         })}
                         <div className="user-box">
                             <div className="user-info">
+                                {/** TODO 头像动态获取 **/}
+                                <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
                                 <Dropdown overlay={menu} placement="bottomRight">
                                     <Button type="link" style={{ height: '100%' }}>
                                         <span>{shopName}</span>
@@ -164,9 +167,6 @@ class BasicLayout extends Component {
                     <Content className="site-layout-background site-content">
                         {routes && renderRoutes(routes, realRole, routeConfig.multipleRoutes)}
                     </Content>
-                    <Footer style={{ textAlign: 'center', padding: '0 50px 8px' }}>
-                        Antd ©2019
-                    </Footer>
                 </Layout>
 
                 <Modal

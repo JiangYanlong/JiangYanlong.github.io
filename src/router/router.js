@@ -2,6 +2,7 @@ import React from 'react';
 import { HomeOutlined } from '@ant-design/icons';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import Dashboard from '@/pages/Dashboard';
+import Mode from '@/pages/Mode';
 import DressDetail from '@/pages/DressDetail';
 import loadable from '@/utils/loadable';
 import NotFound from '@/components/NotFound';
@@ -12,10 +13,14 @@ export const routeConfig = {
             path: '/dashboard', exact: true, icon: <HomeOutlined style={{ marginRight: '18px' }} />, component: Dashboard, extraProps: { title: '工作台' }
         },
         {
+            path: '/mode', exact: true, icon: <HomeOutlined style={{ marginRight: '18px' }} />, component: Mode, extraProps: { title: '模块' }
+        },
+        {
             path: '/setting', auth: [1], exact: true, component: loadable(() => import(/* webpackChunkName: "addDress" */'@/pages/Setting')), extraProps: { hide: true }
         },
-        { path: '/detail/:number', exact: true, component: DressDetail },
-        { url: '/dashboard', redirect: true, extraProps: { hide: true } }
+        { 
+            path: '/detail/:number', exact: true, component: DressDetail 
+        }
     ]
 };
 

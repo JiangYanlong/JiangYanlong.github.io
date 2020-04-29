@@ -3,7 +3,6 @@
 #### 介绍
 ## 基于create-react-app脚手架搭建
 antd4 + mobx + react-router5
-eslint校验
 
 [项目地址](https://github.com/Huaxink/antd-light-admin)
 

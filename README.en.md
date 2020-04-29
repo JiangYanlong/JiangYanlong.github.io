@@ -3,7 +3,7 @@
 #### Description
 ## 基于create-react-app脚手架搭建
 antd4 + mobx + react-router5
-eslint校验
+
 
 #### Software Architecture
 Software architecture description
