@@ -1,5 +1,5 @@
 import React from 'react';
-import { HomeOutlined } from '@ant-design/icons';
+import { HomeOutlined,MailOutlined } from '@ant-design/icons';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import Dashboard from '@/pages/Dashboard';
 import Mode from '@/pages/Mode';
@@ -13,7 +13,7 @@ export const routeConfig = {
             path: '/dashboard', exact: true, icon: <HomeOutlined style={{ marginRight: '18px' }} />, component: Dashboard, extraProps: { title: '工作台' }
         },
         {
-            path: '/mode', exact: true, icon: <HomeOutlined style={{ marginRight: '18px' }} />, component: Mode, extraProps: { title: '模块' }
+            path: '/mode', exact: true, icon: <MailOutlined style={{ marginRight: '18px' }} />, component: Mode, extraProps: { title: '模块' }
         },
         {
             path: '/setting', auth: [1], exact: true, component: loadable(() => import(/* webpackChunkName: "addDress" */'@/pages/Setting')), extraProps: { hide: true }

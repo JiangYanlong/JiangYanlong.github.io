@@ -1,62 +1,54 @@
 import React, { Component } from 'react';
-import { Table, Tag } from 'antd';
+import { Table,Spin,Menu, Dropdown,message } from 'antd';
 import { observer, inject } from 'mobx-react';
+import { toJS } from 'mobx';
+import {
+    MailOutlined,
+    SettingOutlined
+} from '@ant-design/icons';
 
 @inject('modeStore')
 @observer
 class Mode extends Component {
 
-    constructor(props) {
-        super(props)
-        this.state = {
-            bottom: 'bottomRight',
-        }
+    // 页面加载 执行获取数据方法
+    componentDidMount() {
+        this.init();
+    }
+
+    // 引入store中获取数据方法
+    init = () => {
+        const { init,init_column } = this.props.modeStore;
+        init_column();
+        init();
+    }
+
+    onClick = () => {
+        message.loading('查询中....',2.5)
+        
+        .then(this.init())
+        .then(()=> message.info('查询完成...'),1.5);
     }
 
     render() {
-
         const { modeStore } = this.props;
-        console.log(modeStore)
-
-        const columns = [
-            {
-                title: 'id',
-                dataIndex: 'id',
-                key: 'id',
-                render: (text) => <a>{text}</a>,
-            },
-            {
-                title: 'name',
-                dataIndex: 'name',
-                key: 'name',
-            },
-            {
-                title: 'sex',
-                dataIndex: 'sex',
-                key: 'sex',
-            },
-            {
-                title: 'Action',
-                key: 'action',
-                render: (text, record) => (
-                    <span>
-                        <a style={{ marginRight: 16 }}>Invite {record.name}</a>
-                        <a>Delete</a>
-                    </span>
-                ),
-            },
-        ];
-
-        const data = modeStore.data;
-        console.log("data",data)
+        const { data,bottom,loading,columns } = modeStore;
+        const menu = (
+            <Menu>
+              <Menu.Item key="mail" icon={<MailOutlined />} onClick={this.onClick}>查询</Menu.Item>
+              <Menu.Item key="2" icon={<SettingOutlined />}>系统地址</Menu.Item>
+            </Menu>
+          );
         return (
-            <div>
-                <Table
-                    columns={columns}
-                    pagination={{ position: [this.state.bottom] }}
-                    dataSource={data}
-                />
-            </div>
+            <Dropdown overlay={menu} trigger={['contextMenu']}>
+                <Spin spinning={loading} delay={500} tip="Loading...">
+                    <Table
+                        columns={toJS(columns)}
+                        pagination={{ position: [bottom] }}
+                        dataSource={data}
+                    />
+                </Spin>
+            </Dropdown>
         );
     }
 }

@@ -7,7 +7,7 @@ export default class Dashboard extends Component {
         
         return (
             <div>
-                
+                <h1>DashBoard</h1>
             </div>
             
         );
